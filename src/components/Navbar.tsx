@@ -11,8 +11,18 @@ import {
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
 import Logo from '../assets/Logo.svg'
+import { useQuery } from "@tanstack/react-query";
+import { getAllCategories } from "@/api/getAllCategories";
+
+
 
 export function Navbar() {
+
+  const {data: categories} = useQuery({
+        queryKey: ["categories"],
+        queryFn: getAllCategories
+    })
+
   return (
     <div className="flex p-5 justify-between items-center">
       <img src={Logo} alt="" />
@@ -54,12 +64,12 @@ export function Navbar() {
 
           </div>
           <div className="flex flex-col">
-            <Link to={"/camisetas"}><Button  variant={"ghost"}>Camisetas</Button></Link>
-            <Link to={"/bermuda-&-shorts"}><Button  variant={"ghost"}>Bermuda & Shorts</Button></Link>
-            <Link to={"/calcas"}><Button  variant={"ghost"}>Calças</Button></Link>
-            <Link to={"/jaquetas-&-moletons"}><Button  variant={"ghost"}>Jaquetas & Moletons</Button></Link>
-            <Link to={"/tenis"}><Button  variant={"ghost"}>Tênis</Button></Link>
-            <Link to={"/acessorios"}><Button  variant={"ghost"}>Acessórios</Button></Link>
+            {
+              categories?.map((category) => (
+                <Link to={`/${category.slug}`}><Button  variant={"ghost"}>{category.name}</Button></Link>
+              ))
+            }
+           
           </div>
         </SheetContent>
       </Sheet>

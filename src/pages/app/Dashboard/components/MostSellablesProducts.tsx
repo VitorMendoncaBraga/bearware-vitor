@@ -34,12 +34,9 @@ export function MostSellablesProducts() {
 
   return (
     <div className=" ">
-      <h1 className="text-2xl font-bold mb-4">Mais vendidos</h1>{" "}
-      {/* Adicionei um estilo ao título */}
-      {/* 👇 ATENÇÃO: CLASSES ALTERADAS AQUI 👇 */}
+      <h1 className="text-2xl font-bold mb-4">Mais vendidos</h1>
       <div className="flex w-full gap-4 overflow-x-auto [&::-webkit-scrollbar]:hidden">
         {responseData?.map((product) => (
-          // É uma boa prática adicionar uma 'key' única ao mapear arrays no React
           <ProductItem key={product.id} product={product} />
         ))}
       </div>

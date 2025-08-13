@@ -7,7 +7,7 @@ interface IProductItemProps{
 
 export default function ProductItem({product}: IProductItemProps) {
   return (
-    <Link to={"/"} className="flex flex-col gap-4">
+    <Link to={`/${product.variants[0].slug}`} className="flex flex-col gap-4">
       <img src={product.variants[0].image_url} width={150} height={150} alt="" className="rounded-4xl"  />
       <div className="flex flex-col gap-1 max-w-[150px]">
         <p className="font-bold">{product.name}</p>
